@@ -13,8 +13,8 @@ export default async function Detail({
     params: { id: string }
     searchParams: { name?: string; image?: string; description?: string }
 }) {
-    const { name, image, description } = await searchParams
-    const { id } = await params
+    const { name, image, description } = searchParams
+    const { id } = params
     const { data } = await getMarvelData('comics', '', id, LIMIT)
 
     return (
