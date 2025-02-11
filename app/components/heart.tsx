@@ -1,6 +1,8 @@
 'use client'
+
 import { useState } from 'react'
 import Image from 'next/image'
+import { useFavoritesStore } from '@/app/store/favoritesStore'
 
 type HeartProps = {
     bgIsRed?: boolean
@@ -8,9 +10,15 @@ type HeartProps = {
 
 export default function Heart({ bgIsRed }: HeartProps) {
     const [isFavourite, setIsFavourite] = useState(false)
+    const { addFavorite, removeFavorite } = useFavoritesStore()
 
     const toggleFavourite = () => {
         setIsFavourite((currentValue) => !currentValue)
+        if (isFavourite) {
+            removeFavorite()
+        } else {
+            addFavorite()
+        }
     }
 
     return (
