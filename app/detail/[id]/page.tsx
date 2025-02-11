@@ -26,7 +26,9 @@ export default async function Detail({
                 description={description ?? ''}
                 id={id}
             />
-            <div className="font-bold text-2xl px-4 pt-10 pb-5">COMICS</div>
+            <div className="font-bold text-2xl px-4 pt-10 pb-5 xl:px-12">
+                COMICS
+            </div>
             <ComicCardGrid
                 results={data.results.sort((c1: Comic, c2: Comic) => {
                     const date1Str =

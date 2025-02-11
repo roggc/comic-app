@@ -18,7 +18,7 @@ export default function DetailCard({
     id,
 }: CardProps) {
     return (
-        <div className="cut-corner-br">
+        <div className="cut-corner-br grid grid-cols-1 sm:grid-cols-2 xl:p-12 bg-black">
             <div className="relative h-96 w-full">
                 <Image
                     src={image}
@@ -28,7 +28,7 @@ export default function DetailCard({
                     className="object-fill"
                 />
             </div>
-            <div className="bg-black grid grid-cols-1 gap-6 px-4 pt-6 pb-12">
+            <div className="bg-black grid grid-cols-1 gap-6 px-4 pt-6 pb-12 sm:p-12">
                 <div className="flex justify-between items-center">
                     <div className="text-white text-[2rem] truncate z-10">
                         {name.toUpperCase()}
