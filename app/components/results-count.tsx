@@ -11,5 +11,7 @@ export default function ResultsCount({ resultsCount }: ResultsCountProps) {
 
     const count = isFavorites ? favoriteIds.size : resultsCount
 
-    return <div className="text-xs">{count} RESULTS</div>
+    return (
+        <div className="text-xs">{`${count} RESULT${count === 1 ? '' : 'S'}`}</div>
+    )
 }
