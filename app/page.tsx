@@ -11,7 +11,7 @@ export default async function Home() {
         <>
             <Header />
             <FavoritesTitle />
-            <Search />
+            <Search resultsCount={data.results.length} />
             <CardGrid data={data} />
         </>
     )
