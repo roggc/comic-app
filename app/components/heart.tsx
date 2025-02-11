@@ -24,8 +24,6 @@ export default function Heart({ bgIsRed, id, isBig }: HeartProps) {
         }
     }
 
-    console.log('favoriteIds', favoriteIds)
-
     return (
         <Image
             src={isFavorite ? '/heart-full.png' : '/heart-empty.png'}

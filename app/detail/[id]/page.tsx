@@ -1,6 +1,7 @@
 import { getMarvelData } from '@/app/lib/marvel-api'
 import Header from '@/app/components/header'
 import DetailCard from '@/app/components/detail-card/detail-card'
+import ComicCardGrid from '@/app/components/comic-card-grid'
 
 const LIMIT = 20
 
@@ -24,6 +25,8 @@ export default async function Detail({
                 description={description ?? ''}
                 id={id}
             />
+            <div className="font-bold text-2xl px-4 pt-10 pb-5">COMICS</div>
+            <ComicCardGrid data={data} />
         </>
     )
 }
