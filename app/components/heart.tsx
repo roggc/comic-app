@@ -14,7 +14,7 @@ export default function Heart({ bgIsRed, id, isBig }: HeartProps) {
 
     const isFavorite = favoriteIds.has(id)
 
-    const toggleFavorite = (e: any) => {
+    const toggleFavorite = (e: React.MouseEvent<HTMLImageElement>) => {
         e.preventDefault()
         e.stopPropagation()
         if (isFavorite) {
