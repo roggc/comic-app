@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useFavoritesStore } from '@/app/store/favoritesStore'
 
 export default function Favourites() {
-    const { favoritesCount } = useFavoritesStore()
+    const { favoritesCount, setIsFavorites } = useFavoritesStore()
 
     return (
         <div className="flex gap-2 p-2">
@@ -14,6 +14,7 @@ export default function Favourites() {
                 width={24}
                 height={22}
                 style={{ width: '24px', height: 'auto' }}
+                onClick={setIsFavorites}
             />
             <div className="text-white">{favoritesCount}</div>
         </div>
