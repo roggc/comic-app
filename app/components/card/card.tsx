@@ -14,6 +14,7 @@ export default function Card({ character }: CardProps) {
                     src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                     alt={character.name}
                     fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 14vw"
                     className="object-fill"
                 />
             </div>
