@@ -1,0 +1,16 @@
+.cut-corner-br {
+    /* El polígono define los siguientes puntos:
+       1. (0 0): esquina superior izquierda.
+       2. (100% 0): esquina superior derecha.
+       3. (100% calc(100% - 20px)): en el lado derecho, 20px por encima de la base.
+       4. (calc(100% - 20px) 100%): en la parte inferior, 20px a la izquierda del extremo derecho.
+       5. (0 100%): esquina inferior izquierda.
+    */
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 12px),
+        calc(100% - 12px) 100%,
+        0 100%
+    );
+}

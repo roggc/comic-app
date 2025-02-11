@@ -6,14 +6,17 @@ import { useFavoritesStore } from '@/app/store/favoritesStore'
 type HeartProps = {
     bgIsRed?: boolean
     id: number
+    isBig?: boolean
 }
 
-export default function Heart({ bgIsRed, id }: HeartProps) {
+export default function Heart({ bgIsRed, id, isBig }: HeartProps) {
     const { addFavorite, removeFavorite, favoriteIds } = useFavoritesStore()
 
     const isFavorite = favoriteIds.has(id)
 
-    const toggleFavorite = () => {
+    const toggleFavorite = (e: any) => {
+        e.preventDefault()
+        e.stopPropagation()
         if (isFavorite) {
             removeFavorite(id)
         } else {
@@ -29,7 +32,7 @@ export default function Heart({ bgIsRed, id }: HeartProps) {
             height={isFavorite ? 22 : 25}
             onClick={toggleFavorite}
             className={`cursor-pointer z-10 transition duration-500 ${bgIsRed ? 'filter brightness-0 invert' : ''}`}
-            style={{ width: 12, height: 'auto' }}
+            style={{ width: isBig ? 24 : 12, height: 'auto' }}
         />
     )
 }

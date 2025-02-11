@@ -5,4 +5,5 @@ export type Character = {
         path: string
         extension: string
     }
+    description: string
 }
