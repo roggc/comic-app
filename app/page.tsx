@@ -7,7 +7,7 @@ import CardGrid from './components/card-grid'
 export default async function Home({
     searchParams,
 }: {
-    searchParams: { nameStartsWith?: string }
+    searchParams: Promise<{ nameStartsWith?: string }>
 }) {
     const awaitedSearchParams = await searchParams
     const { data } = await getMarvelData(
