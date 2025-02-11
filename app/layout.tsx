@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Roboto_Condensed } from 'next/font/google'
 import './globals.css'
+import NProgressClient from './components/nprogress-client'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -37,6 +38,7 @@ export default function RootLayout({
                 className={`${robotoCondensed.variable} ${geistSans.variable} ${geistMono.variable}  antialiased`}
             >
                 {children}
+                <NProgressClient />
             </body>
         </html>
     )
