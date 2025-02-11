@@ -11,13 +11,19 @@ type CardGridProps = {
 }
 
 export default function CardGrid({ data }: CardGridProps) {
-    const { isFavorites } = useFavoritesStore()
+    const { isFavorites, favoriteIds } = useFavoritesStore()
+
+    const results = isFavorites
+        ? data.results.filter((character: Character) =>
+              favoriteIds.has(character.id)
+          )
+        : data.results
 
     return (
         <div
             className={`overflow-auto grid grid-cols-2 gap-4 p-4 pt-0  transition-all duration-500 ${isFavorites ? 'mt-4' : 'mt-0'}`}
         >
-            {data.results.map((character: Character) => (
+            {results.map((character: Character) => (
                 <Card key={character.id} character={character} />
             ))}
         </div>

@@ -6,18 +6,19 @@ import { useFavoritesStore } from '@/app/store/favoritesStore'
 
 type HeartProps = {
     bgIsRed?: boolean
+    id: number
 }
 
-export default function Heart({ bgIsRed }: HeartProps) {
+export default function Heart({ bgIsRed, id }: HeartProps) {
     const [isFavourite, setIsFavourite] = useState(false)
     const { addFavorite, removeFavorite } = useFavoritesStore()
 
     const toggleFavourite = () => {
         setIsFavourite((currentValue) => !currentValue)
         if (isFavourite) {
-            removeFavorite()
+            removeFavorite(id)
         } else {
-            addFavorite()
+            addFavorite(id)
         }
     }
 

@@ -32,7 +32,7 @@ export default function Card({ character }: CardProps) {
                 <div className="text-white text-sm truncate z-10">
                     {character.name.toUpperCase()}
                 </div>
-                <Heart bgIsRed={isHovered} />
+                <Heart bgIsRed={isHovered} id={character.id} />
                 <div className="absolute top-0 left-0 w-full bg-marvelred h-0 group-hover:h-full transition-all duration-500 ease-out z-0"></div>
             </div>
         </div>
