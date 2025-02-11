@@ -13,6 +13,7 @@ export default function Logo() {
             width={130} // Especifica el ancho en píxeles
             height={52} // Especifica la altura en píxeles
             onClick={setIsNotFavorites}
+            className="cursor-pointer"
         />
     )
 }
