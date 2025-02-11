@@ -4,14 +4,22 @@ import Search from './components/search'
 import FavoritesTitle from './components/favorites-title'
 import CardGrid from './components/card-grid'
 
-export default async function Home() {
-    const { data } = await getMarvelData('characters')
+export default async function Home({
+    searchParams,
+}: {
+    searchParams: { nameStartsWith?: string }
+}) {
+    const awaitedSearchParams = await searchParams
+    const { data } = await getMarvelData(
+        'characters',
+        awaitedSearchParams.nameStartsWith
+    )
 
     return (
         <>
             <Header />
             <FavoritesTitle />
-            <Search resultsCount={data.results.length} />
+            <Search data={data} />
             <CardGrid data={data} />
         </>
     )

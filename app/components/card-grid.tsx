@@ -3,6 +3,7 @@
 import { Character } from '@/app/types/marvel/character'
 import Card from '@/app/components/card/card'
 import { useFavoritesStore } from '@/app/store/favoritesStore'
+import { useResults } from '@/app/hooks'
 
 type CardGridProps = {
     data: {
@@ -11,13 +12,8 @@ type CardGridProps = {
 }
 
 export default function CardGrid({ data }: CardGridProps) {
-    const { isFavorites, favoriteIds } = useFavoritesStore()
-
-    const results = isFavorites
-        ? data.results.filter((character: Character) =>
-              favoriteIds.has(character.id)
-          )
-        : data.results
+    const results = useResults(data)
+    const { isFavorites } = useFavoritesStore()
 
     return (
         <div
