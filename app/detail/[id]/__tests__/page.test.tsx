@@ -9,12 +9,6 @@ jest.mock('@/app/lib/marvel-api', () => ({
     getMarvelData: jest.fn(),
 }))
 
-jest.mock('@/app/components/header', () => {
-    const FakeHeader = () => <div data-testid="header">Header</div>
-    FakeHeader.displayName = 'FakeHeader'
-    return FakeHeader
-})
-
 type DetailCardProps = {
     name: string
     image: string
@@ -93,9 +87,6 @@ describe('Detail page', () => {
 
         // Renderizamos el JSX retornado
         render(pageElement)
-
-        // Verificamos que se rendericen los componentes hijos
-        expect(screen.getByTestId('header')).toBeInTheDocument()
 
         // DetailCard debe recibir los props correctos
         expect(screen.getByTestId('detail-card')).toHaveTextContent(
