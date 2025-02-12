@@ -9,13 +9,6 @@ jest.mock('@/app/lib/marvel-api', () => ({
     getMarvelData: jest.fn(),
 }))
 
-// Mock de los componentes hijos para simplificar el test
-jest.mock('@/app/components/header', () => {
-    const FakeHeader = () => <div data-testid="header">Header</div>
-    FakeHeader.displayName = 'FakeHeader'
-    return FakeHeader
-})
-
 jest.mock('@/app/components/favorites-title', () => {
     const FakeFavoritesTitle = () => (
         <div data-testid="favorites-title">FavoritesTitle</div>
@@ -67,7 +60,6 @@ describe('Home page', () => {
         render(homeElement)
 
         // Verificamos que se renderizan los componentes hijos mockeados
-        expect(screen.getByTestId('header')).toBeInTheDocument()
         expect(screen.getByTestId('favorites-title')).toBeInTheDocument()
         expect(screen.getByTestId('search')).toBeInTheDocument()
         expect(screen.getByTestId('card-grid')).toBeInTheDocument()
