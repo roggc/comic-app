@@ -1,5 +1,4 @@
 import { getMarvelData } from '@/app/lib/marvel-api'
-import Header from '@/app/components/header'
 import DetailCard from '@/app/components/detail-card/detail-card'
 import ComicCardGrid from '@/app/components/comic-card-grid'
 import { Comic } from '@/app/types/marvel/comic'
@@ -23,7 +22,6 @@ export default async function Detail({
 
     return (
         <>
-            <Header />
             <DetailCard
                 name={name ?? ''}
                 image={image ?? ''}
