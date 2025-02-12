@@ -3,11 +3,25 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import ComicCard from '@/app/components/comic-card'
 import { Comic } from '@/app/types/marvel/comic'
+import type { ImageProps, StaticImageData } from 'next/image'
 
 // Mockear el componente Image de Next.js para que se renderice como una <img>
-jest.mock('next/image', () => (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />
+jest.mock('next/image', () => {
+    const FakeImage = ({ src, ...rest }: ImageProps) => {
+        let srcString: string
+        if (typeof src === 'string') {
+            srcString = src
+        } else {
+            // Convertimos primero a unknown y luego a StaticImageData para obtener la propiedad src
+            srcString = (src as unknown as StaticImageData).src
+        }
+        return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={srcString} {...rest} />
+        )
+    }
+    FakeImage.displayName = 'FakeImage'
+    return FakeImage
 })
 
 const sampleComic: Comic = {

@@ -17,7 +17,7 @@ describe('FavoritesStore', () => {
     })
 
     it('debe activar isFavorites al llamar a setIsFavorites', () => {
-        const { setIsFavorites, isFavorites } = useFavoritesStore.getState()
+        const { setIsFavorites } = useFavoritesStore.getState()
         setIsFavorites()
         const newState = useFavoritesStore.getState()
         expect(newState.isFavorites).toBe(true)
@@ -34,7 +34,7 @@ describe('FavoritesStore', () => {
     })
 
     it('debe agregar un id favorito con addFavorite', () => {
-        const { addFavorite, favoriteIds } = useFavoritesStore.getState()
+        const { addFavorite } = useFavoritesStore.getState()
         addFavorite(5)
         expect(useFavoritesStore.getState().favoriteIds.has(5)).toBe(true)
     })
