@@ -35,7 +35,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${robotoCondensed.variable} ${geistSans.variable} ${geistMono.variable}  antialiased`}
+                className={`${robotoCondensed.variable} ${geistSans.variable} ${geistMono.variable}  antialiased bg-white text-black`}
             >
                 {children}
                 <NProgressClient />
