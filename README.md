@@ -1,4 +1,4 @@
-### Marvel Comics App
+# Marvel Comics App
 
 ## Install dependencies
 
@@ -17,6 +17,8 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+If you miss environment variables you won't be able to fetch data from this project.
 
 ## Web where this project has been deployed
 
