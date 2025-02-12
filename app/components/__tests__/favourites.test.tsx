@@ -26,7 +26,7 @@ jest.mock('next/image', () => {
 
 // Mock de Next/Link para renderizar un <a>
 jest.mock('next/link', () => {
-    return ({
+    const FakeLink = ({
         children,
         href,
         onClick,
@@ -39,6 +39,8 @@ jest.mock('next/link', () => {
             {children}
         </a>
     )
+    FakeLink.displayName = 'FakeLink'
+    return FakeLink
 })
 
 describe('Favourites component', () => {
