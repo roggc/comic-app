@@ -5,10 +5,8 @@ export type Comic = {
         path: string
         extension: string
     }
-    dates: [
-        {
-            type: string
-            date: string
-        },
-    ]
+    dates: {
+        type: string
+        date: string
+    }[]
 }
