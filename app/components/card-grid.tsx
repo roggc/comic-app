@@ -4,6 +4,8 @@ import { Character } from '@/app/types/marvel/character'
 import Card from '@/app/components/card/card'
 import { useFavoritesStore } from '@/app/store/favoritesStore'
 import { useResults } from '@/app/hooks'
+import { useLoadingStore } from '@/app/store/loadingStore'
+import { useEffect } from 'react'
 
 type CardGridProps = {
     data: {
@@ -14,6 +16,11 @@ type CardGridProps = {
 export default function CardGrid({ data }: CardGridProps) {
     const results = useResults(data)
     const { isFavorites } = useFavoritesStore()
+    const { setIsLoaded } = useLoadingStore()
+
+    useEffect(() => {
+        setIsLoaded()
+    }, [])
 
     return (
         <div
