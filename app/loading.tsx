@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import { useLoadingStore } from '@/app/store/loadingStore'
-import { set } from 'nprogress'
 
 export default function Loading() {
     const { setIsNotLoaded, setIsLoaded } = useLoadingStore()
