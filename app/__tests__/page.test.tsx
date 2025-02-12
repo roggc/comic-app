@@ -10,18 +10,43 @@ jest.mock('@/app/lib/marvel-api', () => ({
 }))
 
 // Mock de los componentes hijos para simplificar el test
-jest.mock('@/app/components/header', () => () => (
-    <div data-testid="header">Header</div>
-))
-jest.mock('@/app/components/favorites-title', () => () => (
-    <div data-testid="favorites-title">FavoritesTitle</div>
-))
-jest.mock('@/app/components/search', () => ({ data }: { data: any }) => (
-    <div data-testid="search">Search: {JSON.stringify(data)}</div>
-))
-jest.mock('@/app/components/card-grid', () => ({ data }: { data: any }) => (
-    <div data-testid="card-grid">CardGrid: {JSON.stringify(data)}</div>
-))
+jest.mock('@/app/components/header', () => {
+    const FakeHeader = () => <div data-testid="header">Header</div>
+    FakeHeader.displayName = 'FakeHeader'
+    return FakeHeader
+})
+
+jest.mock('@/app/components/favorites-title', () => {
+    const FakeFavoritesTitle = () => (
+        <div data-testid="favorites-title">FavoritesTitle</div>
+    )
+    FakeFavoritesTitle.displayName = 'FakeFavoritesTitle'
+    return FakeFavoritesTitle
+})
+
+type FakeSearchProps = {
+    data: { results: { id: number; name: string }[] }
+}
+
+jest.mock('@/app/components/search', () => {
+    const FakeSearch = ({ data }: { data: FakeSearchProps }) => (
+        <div data-testid="search">Search: {JSON.stringify(data)}</div>
+    )
+    FakeSearch.displayName = 'FakeSearch'
+    return FakeSearch
+})
+
+type FakeCardGridProps = {
+    data: { results: { id: number; name: string }[] }
+}
+
+jest.mock('@/app/components/card-grid', () => {
+    const FakeCardGrid = ({ data }: { data: FakeCardGridProps }) => (
+        <div data-testid="card-grid">CardGrid: {JSON.stringify(data)}</div>
+    )
+    FakeCardGrid.displayName = 'FakeCardGrid'
+    return FakeCardGrid
+})
 
 describe('Home page', () => {
     const fakeData = { results: [{ id: 1, name: 'Spider-Man' }] }

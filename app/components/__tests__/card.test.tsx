@@ -3,27 +3,51 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import Card from '@/app/components/card/card'
 import { Character } from '@/app/types/marvel/character'
+import type { ImageProps, StaticImageData } from 'next/image'
 
 // Mock de Next/Image para renderizar una etiqueta img
-jest.mock('next/image', () => (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />
+jest.mock('next/image', () => {
+    const FakeImage = ({ src, ...rest }: ImageProps) => {
+        let srcString: string
+        if (typeof src === 'string') {
+            srcString = src
+        } else {
+            // Convertimos primero a unknown y luego a StaticImageData para obtener la propiedad src
+            srcString = (src as unknown as StaticImageData).src
+        }
+        return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={srcString} {...rest} />
+        )
+    }
+    FakeImage.displayName = 'FakeImage'
+    return FakeImage
 })
 
 // Mock de Next/Link para renderizar un anchor
 jest.mock('next/link', () => {
-    return ({
+    const FakeLink = ({
         children,
         href,
     }: {
         children: React.ReactNode
         href: string
     }) => <a href={href}>{children}</a>
+    FakeLink.displayName = 'FakeLink'
+    return FakeLink
 })
 
+type FakeHeartProps = {
+    bgIsRed: boolean
+}
+
 // Mock del componente Heart para que podamos inspeccionar la prop bgIsRed
-jest.mock('@/app/components/heart', () => (props: any) => {
-    return <div data-testid="heart" data-bg-is-red={props.bgIsRed} />
+jest.mock('@/app/components/heart', () => {
+    const FakeHeart = (props: FakeHeartProps) => {
+        return <div data-testid="heart" data-bg-is-red={props.bgIsRed} />
+    }
+    FakeHeart.displayName = 'FakeHeart'
+    return FakeHeart
 })
 
 // Objeto de ejemplo para Character

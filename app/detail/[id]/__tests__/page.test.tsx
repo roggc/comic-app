@@ -9,20 +9,47 @@ jest.mock('@/app/lib/marvel-api', () => ({
     getMarvelData: jest.fn(),
 }))
 
-// Mock de los componentes hijos para simplificar el test y aislar la página
-jest.mock('@/app/components/header', () => () => (
-    <div data-testid="header">Header</div>
-))
-jest.mock('@/app/components/detail-card/detail-card', () => (props: any) => (
-    <div data-testid="detail-card">
-        DetailCard: {props.name}, {props.image}, {props.description}, {props.id}
-    </div>
-))
-jest.mock('@/app/components/comic-card-grid', () => (props: any) => (
-    <div data-testid="comic-card-grid">
-        ComicCardGrid with {JSON.stringify(props.results)}
-    </div>
-))
+jest.mock('@/app/components/header', () => {
+    const FakeHeader = () => <div data-testid="header">Header</div>
+    FakeHeader.displayName = 'FakeHeader'
+    return FakeHeader
+})
+
+type DetailCardProps = {
+    name: string
+    image: string
+    description: string
+    id: string
+}
+
+jest.mock('@/app/components/detail-card/detail-card', () => {
+    const FakeDetailCard = (props: DetailCardProps) => (
+        <div data-testid="detail-card">
+            DetailCard: {props.name}, {props.image}, {props.description},{' '}
+            {props.id}
+        </div>
+    )
+    FakeDetailCard.displayName = 'FakeDetailCard'
+    return FakeDetailCard
+})
+
+type ComicCardGridProps = {
+    results: {
+        id: number
+        title: string
+        dates: { type: string; date: string }[]
+    }[]
+}
+
+jest.mock('@/app/components/comic-card-grid', () => {
+    const FakeComicCardGrid = (props: ComicCardGridProps) => (
+        <div data-testid="comic-card-grid">
+            ComicCardGrid with {JSON.stringify(props.results)}
+        </div>
+    )
+    FakeComicCardGrid.displayName = 'FakeComicCardGrid'
+    return FakeComicCardGrid
+})
 
 // Datos de ejemplo para comics
 const fakeComicsData = {
