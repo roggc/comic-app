@@ -1,8 +1,11 @@
 import crypto from 'crypto'
 
 const getMarvelParameters = () => {
-    // Genera un timestamp (por ejemplo, usando el número de milisegundos actuales)
-    const ts = Date.now().toString()
+    // Calcula el timestamp del inicio del día actual (medianoche)
+    const now = new Date()
+    const ts = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        .getTime()
+        .toString()
 
     // Define tus claves (se recomienda que las almacenes en variables de entorno)
     const privateKey = process.env.MARVEL_PRIVATE_KEY // e.g., "abcd"

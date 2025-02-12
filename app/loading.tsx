@@ -5,6 +5,7 @@ import { useLoadingStore } from '@/app/store/loadingStore'
 
 export default function Loading() {
     const { setIsNotLoaded, setIsLoaded } = useLoadingStore()
+
     useEffect(() => {
         setIsNotLoaded()
         return () => {
